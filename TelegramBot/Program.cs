@@ -38,14 +38,14 @@ class Program
         {
             if (int.TryParse(update.Message.Text, out int quantity))
             {
-                // Отримуємо вибраний продукт та його ціну для поточного користувача
+                
                 if (selectedProductName.TryGetValue(update.Message.Chat.Id, out string? productName) &&
                     selectedProductPrice.TryGetValue(update.Message.Chat.Id, out decimal productPrice))
                 {
-                    // Обробляємо замовлення з кількістю
+                    
                     await HandleMessageAsync(update.Message, productName, productPrice, quantity, cancellationToken);
 
-                    // Очищаємо стан очікування та вибір продукту після успішного замовлення
+                    
                     waitingForNumber[update.Message.Chat.Id] = false;
                     selectedProductName.Remove(update.Message.Chat.Id);
                     selectedProductPrice.Remove(update.Message.Chat.Id);
@@ -67,7 +67,7 @@ class Program
             var message = update.Message;
             Console.WriteLine($"Отримано повідомлення: {message.Text}");
 
-            // Перевірка тексту повідомлення та надсилання відповідної фотографії й клавіатури
+            
             if (message.Text == "Auto" || message.Text == "Metis" || message.Text == "Agave")
             {
                 var inlineKeyboard = new InlineKeyboardMarkup(new[]
